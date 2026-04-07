@@ -1,0 +1,67 @@
+const express = require('express')
+const methodOverride = require("method-override")
+
+const cookieParser = require("cookie-parser")
+const session = require("express-session")
+const flash = require("connect-flash");
+
+const bodyParser = require("body-parser")
+// import route ben client
+const routeClient = require("./routes/client/index.route")
+
+// import route ben admin
+const routeAdmin = require("./routes/admin/index.route")
+const systemConfig = require("./config/system");
+
+
+const app = express();
+const database = require("./config/database")
+
+
+require("dotenv").config();
+const port = process.env.PORT
+
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
+
+// flash 
+app.use(cookieParser('JHGDSJFH'));
+app.use(session({
+    secret: 'JHGDSJFH', // Phải có secret key (có thể dùng chung với cookieParser)
+    resave: false,      // Bắt buộc: không lưu lại session nếu không có thay đổi
+    saveUninitialized: true, // Bắt buộc: lưu lại session mới tạo dù chưa có dữ liệu
+    cookie: { maxAge: 60000 }
+}));
+app.use(flash());
+app.use((req, res, next) => {
+    // res.locals giúp biến messages có mặt ở TẤT CẢ các file .pug
+    res.locals.messages = {
+        success: req.flash('success'),
+        error: req.flash('error')
+    };
+    next();
+});
+
+database.connect();
+
+
+
+app.set("views", `${__dirname}/views`);
+app.set("view engine", "pug");
+
+
+// App locals Variables -> khi nay tat ca cac file pug deu co the su dung bien nay
+app.locals.prefixAdmin = systemConfig.prefixAdmin;
+
+// Vi deploy len online no khong hieu bien public laf gi nen phai su dung  __dirname(se cho biet cau truc project)
+// app.use(express.static("public"))
+
+app.use(express.static(`${__dirname}/public`))
+
+routeAdmin(app)
+routeClient(app)
+
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`)
+})
