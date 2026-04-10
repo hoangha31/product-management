@@ -143,15 +143,15 @@ module.exports.createPost = async (req, res) => {
         req.body.position = parseInt(req.body.position);
     }
 
-    if (req.file) {
-        req.body.thumnail = `/uploads/${req.file.filename}`;
-        // console.log(req.body);
-    }
+    // if (req.file) {
+    //     req.body.thumnail = `/uploads/${req.file.filename}`;
+    //     // console.log(req.body);
+    // }
 
     const product = new Product(req.body); // Dung new Product de tao ra 1 doi tuong moi, sau do goi phuong thuc save de luu vao database
 
     await product.save();
-
+    // console.log("req.body o controller: ", req.body);
     res.redirect('/admin/products')
 }
 

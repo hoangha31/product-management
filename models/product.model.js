@@ -5,11 +5,11 @@ mongoose.plugin(slug)
 const productSchema = new mongoose.Schema(
     {
         title: String,
-        desciption: String,
+        description: String,
         price: Number,
         discountPercentage: Number,
         stock: Number,
-        thumnail: String,
+        thumbnail: String,
         status: String,
         position: Number,
         slug: {
