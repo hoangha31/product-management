@@ -1,0 +1,83 @@
+/* Căn giữa toàn bộ nội dung trên trang */
+.main-content {
+    display: flex;
+    justify-content: center;
+    /* Căn giữa theo chiều ngang */
+    align-items: center;
+    /* Căn giữa theo chiều dọc */
+    min-height: 80vh;
+    /* Chiều cao tối thiểu để thấy rõ việc căn giữa */
+    padding: 20px;
+    background-color: #f0f2f5;
+}
+
+/* Khung bao bọc sản phẩm (Card) */
+.product-card {
+    background: #ffffff;
+    width: 100%;
+    max-width: 600px;
+    /* Độ rộng tối đa của khung */
+    padding: 30px;
+    border-radius: 15px;
+    /* Bo góc */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* Đổ bóng cho sang trọng */
+    border: 1px solid #e0e0e0;
+}
+
+/* Tiêu đề */
+.product-card h1 {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Các dòng thông tin */
+.info-item {
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #444;
+}
+
+.info-item b {
+    color: #000;
+}
+
+/* Hình ảnh */
+.product-thumb {
+    display: block;
+    margin: 0 auto 20px auto;
+    /* Căn giữa ảnh */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Badge trạng thái */
+.badge {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+/* Nút bấm */
+.btn-edit {
+    display: block;
+    width: fit-content;
+    margin: 20px auto 0 auto;
+    /* Căn giữa nút */
+    padding: 10px 25px;
+    background-color: #ffc107;
+    color: #000;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

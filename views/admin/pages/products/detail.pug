@@ -1,32 +1,43 @@
 extends ../../layouts/default.pug
 
 block main
-    if (product.title)
-        h1(class="mb-4") #{product.title}
-    if (product.price)
-        div(class="mb-4") Giá: <b>#{product.price}$</b>
-    if (product.discountPercentage)
-        div(class="mb-4") Giảm giá: <b>#{product.discountPercentage}%</b>
-    if (product.stock)
-        div(class="mb-4") Còn lại: <b>#{product.stock}</b>
-    if (product.thumbnail)
-        div(class="mb-4")
-            img(
-                src=product.thumbnail
-                style="width: 100px"
-            )
-    if (product.status)
-        div(class="mb-4")
-            span Trạng thái:
-            if (product.status === "active")
-                span(class="badge badge-success") Hoạt động
-            else
-                span(class="badge badge-danger") Dừng hoạt động
-    if (product.position)
-        div(class="mb-4") Vị trí: <b>#{product.position}</b>
-    if (product.description)
-        div(class="mb-4") #{product.description}
+  .container-detail
+    .product-card
+      if (product.title)
+        h1 #{product.title}
+      
+      if (product.thumbnail)
+        img(
+          src=product.thumbnail
+          style="width: 150px"
+          alt=product.title
+        )
 
-    a(class="btn btn-warning" href=`${prefixAdmin}/products/edit/${product.id}`) Chỉnh sửa
-    
-    scripts(src="/admin/js/product.js")
+      if (product.price)
+        .info-line Giá: <b>#{product.price}$</b>
+      
+      if (product.discountPercentage)
+        .info-line Giảm giá: <b style="color: #dc3545;">#{product.discountPercentage}%</b>
+      
+      if (product.stock)
+        .info-line Còn lại: <b>#{product.stock}</b>
+
+      if (product.status)
+        .info-line
+          span Trạng thái:
+          if (product.status === "active")
+            span(class="badge badge-success") Hoạt động
+          else
+            span(class="badge badge-danger") Dừng hoạt động
+
+      if (product.position)
+        .info-line Vị trí: <b>#{product.position}</b>
+
+      if (product.description)
+        .description-box !{product.description}
+
+      a(class="btn-edit" href=`${prefixAdmin}/products/edit/${product.id}`) Chỉnh sửa
+
+    //- Nhúng CSS và JS (Lưu ý: dùng thẻ link cho CSS và script cho JS)
+    link(rel="stylesheet", href="/admin/css/detailProduct.css")
+    script(src="/admin/js/product.js")

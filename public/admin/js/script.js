@@ -178,3 +178,89 @@ if (uploadImage) {
     })
 }
 // end upload image
+
+// Sort
+
+// const sort = document.querySelector("[sort]")
+// console.log('sort: ', sort)
+
+// if (sort) {
+//     const sortSelect = sort.querySelector("[sort-select]")
+//     const sortClear = sort.querySelector("[sort-clear]")
+//     const url = new URL(window.location.href)
+
+//     sortSelect.addEventListener("change", (e) => {
+//         // console.log(e)
+//         // console.log(e.target.value)
+
+//         const value = e.target.value
+//         // console.log(value.split("-"))
+//         const [sortKey, sortValue] = value.split("-")
+
+//         url.searchParams.set("sortKey", sortKey)
+//         url.searchParams.set("sortValue", sortValue)
+
+//         window.location.href = url.href
+//     });
+
+//     // clear sort
+//     sortClear.addEventListener("click", () => {
+//         url.searchParams.delete("sortKey")
+//         url.searchParams.delete("sortValue")
+//         window.location.href = url.href
+//     })
+
+//     // them selected cho option
+//     const sortKey = url.searchParams.get("sortKey")
+//     const sortValue = url.searchParams.get("sortValue")
+
+
+//     if (sortKey && sortValue) {
+//         const stringSort = `${sortKey}-${sortValue}`
+//         // console.log(stringSort)
+//         const optionSelected = sortSelect.querySelector(`option[value="${stringSort}"]`)
+//         // console.log(optionSelected)
+//         if (optionSelected) {
+//             optionSelected.selected = true; // voi cac thuoc tinh mặc định ta . luôn để lấy tên của thuộc tính đó, nếu không có thể sử dụng getAttribute để lấy giá trị của thuộc tính đó
+//         }
+//     }
+
+// }
+
+const sort = document.querySelector("[sort]")
+
+if (sort) {
+    const sortSelect = sort.querySelector("[sort-select]")
+    const sortClear = sort.querySelector("[sort-clear]")
+
+    console.log("sortSelect: ", sortSelect)
+    console.log("sortClear: ", sortClear)
+
+    const url = new URL(window.location.href)
+
+    sortSelect.addEventListener("change", (e) => {
+        const value = e.target.value
+        const [sortKey, sortValue] = value.split("-")
+
+        url.searchParams.set("sortKey", sortKey)
+        url.searchParams.set("sortValue", sortValue)
+        window.location.href = url.href
+    })
+
+    sortClear.addEventListener("click", () => {
+        url.searchParams.delete("sortKey")
+        url.searchParams.delete("sortValue")
+        window.location.href = url.href
+    })
+
+    const sortKey = url.searchParams.get("sortKey")
+    const sortValue = url.searchParams.get("sortValue")
+    if (sortKey && sortValue) {
+        const stringSort = `${sortKey}-${sortValue}`
+        const optionSelected = sortSelect.querySelector(`option[value="${stringSort}"]`)
+        if (optionSelected) {
+            optionSelected.selected = true
+        }
+    }
+}
+// end sort

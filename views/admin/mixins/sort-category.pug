@@ -1,0 +1,15 @@
+mixin sortCategory()
+        div(sort)
+            select(
+                class="form-control"
+                name="sort"
+                sort-select
+            )
+                option(value="position-desc" selected=true) Vị trí giảm dàn
+                option(value="position-asc") Vị trí tăng dân
+                option(value="title-asc") Tiêu đề A-Z
+                option(value="title-desc") Tiêu đề Z-A
+            button(
+                class="btn btn-danger mt-2"
+                sort-clear
+            ) Clear

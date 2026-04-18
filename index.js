@@ -1,6 +1,8 @@
+require("dotenv").config();
+
 const express = require('express')
 const methodOverride = require("method-override")
-
+var path = require('path');
 const cookieParser = require("cookie-parser")
 const session = require("express-session")
 const flash = require("connect-flash");
@@ -13,14 +15,15 @@ const routeClient = require("./routes/client/index.route")
 const routeAdmin = require("./routes/admin/index.route")
 const systemConfig = require("./config/system");
 
-
 const app = express();
 const database = require("./config/database")
 
 
-require("dotenv").config();
+
 const port = process.env.PORT
 
+// use TinyMce
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));

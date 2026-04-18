@@ -4,6 +4,7 @@ const paginationHelper = require("../../helpers/pagination")
 const filterStatusHelper = require("../../helpers/filterStatus")
 const Product = require("../../models/product.model")
 const systemConfig = require("../../config/system")
+
 module.exports.index = async (req, res) => {
     // console.log(req.query.status)
 
@@ -38,8 +39,18 @@ module.exports.index = async (req, res) => {
 
     // End Pagination
 
+    //sort 
+    let sort = {}
+
+    if (req.query.sortKey && req.query.sortValue) {
+        sort[req.query.sortKey] = req.query.sortValue
+    } else {
+        sort.position = "desc"
+    }
+    // end sort
+
     const products = await Product.find(find)
-        .sort({ position: "desc" })
+        .sort(sort)
         .limit(4)
         .skip(objectPagination.skip)
 
@@ -53,6 +64,7 @@ module.exports.index = async (req, res) => {
         pagination: objectPagination
     })
 }
+
 
 // [PATCH] /admin/products/change-status/:status/:id
 module.exports.changeStatus = async (req, res) => {

@@ -1,0 +1,98 @@
+/* Container chính để căn giữa card */
+.container-detail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    /* Giúp khung nằm giữa theo chiều dọc */
+    padding: 20px;
+}
+
+/* Khung trắng bao quanh (Card) */
+.product-card {
+    background: #fff;
+    width: 100%;
+    max-width: 500px;
+    /* Độ rộng vừa phải cho một card chi tiết */
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    /* Đổ bóng nhẹ cho sang trọng */
+    border: 1px solid #eef0f2;
+}
+
+/* Tiêu đề sản phẩm */
+.product-card h1 {
+    font-size: 26px;
+    font-weight: 700;
+    color: #333;
+    text-align: center;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f1f1f1;
+    padding-bottom: 10px;
+}
+
+/* Hình ảnh sản phẩm */
+.product-card img {
+    display: block;
+    margin: 0 auto 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+}
+
+.product-card img:hover {
+    transform: scale(1.05);
+}
+
+/* Các dòng thông tin */
+.info-line {
+    margin-bottom: 15px;
+    font-size: 16px;
+    color: #555;
+    display: flex;
+    justify-content: space-between;
+    /* Đẩy text sang 2 bên cho đẹp */
+    align-items: center;
+}
+
+.info-line b {
+    color: #000;
+}
+
+/* Badge trạng thái */
+.badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* Phần mô tả */
+.description-box {
+    margin-top: 20px;
+    padding: 15px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-style: italic;
+    color: #666;
+}
+
+/* Nút chỉnh sửa */
+.btn-edit {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background-color: #ffc107;
+    color: #212529;
+    padding: 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 25px;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+    box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+}

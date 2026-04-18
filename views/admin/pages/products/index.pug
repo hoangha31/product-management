@@ -4,13 +4,14 @@ include ../../mixins/search.pug
 include ../../mixins/pagination.pug
 include ../../mixins/form-change-multi.pug
 include ../../mixins/alert.pug
+include ../../mixins/sort.pug
 block main
 
     +alert-success("5000")
 
     h1 Danh sách sản phẩm
 
-    card.mb-3
+    .card.mb-3
         .card-header Bộ lọc và Tìm kiếm
         .card-body
           .row
@@ -19,9 +20,9 @@ block main
             .col-6 
                 +search(keyword)
                 
+ 
 
-
-    card.mb-3
+    .card.mb-3
         .card-header Danh sach 
         .card-body
             .row
@@ -52,81 +53,89 @@ block main
             //-             )
             //-         button(type="submit" class="btn btn-primary") Áp dụng
 
-            table(
-                class="table table-hover table-sm"
-                checkbox-multi
-            )
-                thead
-                    tr
-                        th
-                            input(type="checkbox" name="checkall")
-                        th STT
-                        th Hinh anh
-                        th Tieu de
-                        th Gia
-                        th Vi tri
-                        th Trang thai
-                        th Hanh dong
+               .card.mb-3
+    .card.mb-3
+        .card-header Sắp xếp
+        .card-body
+            .row
+                .col-4
+                    +sort()
 
-                tbody 
-                    each item, index in products
-                        tr
-                            td
-                                input(
-                                    type="checkbox"
-                                    name="id"
-                                    value=item.id
-                                )
-                            td #{index+1}
-                            
-                            td 
-                                
-                                img(
-                                    src = item.thumbnail
-                                    alt= item.title
-                                    width= "100px"
-                                    height="auto"
-                                )
-                            td #{item.title}
-                            td #{item.price}$
-                            td 
-                                input(
-                                    type="number"
-                                    value=item.position
-                                    style="width: 60px"
-                                    min="1"
-                                    name="position"
-                                )
-                            td 
-                                if(item.status == "active")
-                                    a(
-                                        href="javascript:;" 
-                                        data-status="active"
-                                        data-id= item.id
-                                        button-change-status
-                                        class="badge badge-success"
-                                    ) Hoat dong
-                                else
-                                    a(
-                                        href="javascript:;"
-                                        data-status="inactive"
-                                        data-id= item.id
-                                        button-change-status
-                                        class="badge badge-danger"
-                                    ) Dung hoat dong
-                            td 
-                                a(
-                                    href= `${prefixAdmin}/products/detail/${item.id}`
-                                    class="btn btn-secondary btn-sm"
-                                    ) Chi tiết
-                                a(
-                                    href=`${prefixAdmin}/products/edit/${item.id}` 
-                                    class="btn btn-warning btn-sm") Sua
-                                button(
-                                    class="btn btn-danger btn-sm ml-1"
-                                    button-delete
-                                    data-id=item.id
-                                ) Xoa
+    table(
+        class="table table-hover table-sm"
+        checkbox-multi
+    )
+        thead
+            tr
+                th
+                    input(type="checkbox" name="checkall")
+                th STT
+                th Hinh anh
+                th Tieu de
+                th Gia
+                th Vi tri
+                th Trang thai
+                th Hanh dong
+
+        tbody 
+            each item, index in products
+                tr
+                    td
+                        input(
+                            type="checkbox"
+                            name="id"
+                            value=item.id
+                        )
+                    td #{index+1}
+                    
+                    td 
+                        
+                        img(
+                            src = item.thumbnail
+                            alt= item.title
+                            width= "100px"
+                            height="auto"
+                        )
+                    td #{item.title}
+                    td #{item.price}$
+                    td 
+                        input(
+                            type="number"
+                            value=item.position
+                            style="width: 60px"
+                            min="1"
+                            name="position"
+                        )
+                    td 
+                        if(item.status == "active")
+                            a(
+                                href="javascript:;" 
+                                data-status="active"
+                                data-id= item.id
+                                button-change-status
+                                class="badge badge-success"
+                            ) Hoat dong
+                        else
+                            a(
+                                href="javascript:;"
+                                data-status="inactive"
+                                data-id= item.id
+                                button-change-status
+                                class="badge badge-danger"
+                            ) Dung hoat dong
+                    td 
+                        a(
+                            href= `${prefixAdmin}/products/detail/${item.id}`
+                            class="btn btn-secondary btn-sm"
+                            ) Chi tiết
+                        a(
+                            href=`${prefixAdmin}/products/edit/${item.id}` 
+                            class="btn btn-warning btn-sm") Sua
+                        button(
+                            class="btn btn-danger btn-sm ml-1"
+                            button-delete
+                            data-id=item.id
+                        ) Xoa
 
 
     +pagination(pagination)

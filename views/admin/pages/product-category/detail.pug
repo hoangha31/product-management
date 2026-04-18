@@ -1,0 +1,45 @@
+extends ../../layouts/default.pug
+
+block main
+  //- Lớp bọc bên ngoài cùng để căn giữa
+  .main-content
+    //- Khung (Card) bao quanh sản phẩm
+    .product-card
+      if (product.title)
+        h1 #{product.title}
+
+      if (product.thumbnail)
+        img(
+          src=product.thumbnail
+          class="product-thumb"
+          style="width: 150px"
+        )
+
+      if (product.price)
+        div(class="info-item") Giá: <b>#{product.price}$</b>
+
+      if (product.discountPercentage)
+        div(class="info-item") Giảm giá: <b style="color: red">#{product.discountPercentage}%</b>
+
+      if (product.stock)
+        div(class="info-item") Còn lại: <b>#{product.stock}</b>
+
+      if (product.status)
+        div(class="info-item")
+          span Trạng thái: 
+          if (product.status === "active")
+            span(class="badge badge-success") Hoạt động
+          else
+            span(class="badge badge-danger") Dừng hoạt động
+
+      if (product.position)
+        div(class="info-item") Vị trí: <b>#{product.position}</b>
+
+      if (product.description)
+        div(class="product-description" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee") Mô tả: !{product.description}
+
+      a(class="btn-edit" href=`${prefixAdmin}/products-category/edit/${product.id}`) Chỉnh sửa
+
+    //- Nhớ nhúng CSS và JS đúng đường dẫn bạn đã sửa
+    link(rel="stylesheet", href="/admin/css/detail.css")
+    script(src="/admin/js/product.js")
